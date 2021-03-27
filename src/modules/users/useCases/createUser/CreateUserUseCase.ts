@@ -1,4 +1,3 @@
-import appError from "../../../../errors/appError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -18,7 +17,7 @@ class CreateUserUseCase {
     return user;
     }
 
-    throw new appError("User already exists", 400);
+    throw new Error("User Already Exist");
 
 
   }

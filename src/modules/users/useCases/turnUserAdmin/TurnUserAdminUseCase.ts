@@ -1,4 +1,3 @@
-import appError from "../../../../errors/appError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -11,8 +10,7 @@ class TurnUserAdminUseCase {
 
   execute({ user_id }: IRequest): User {
     const alreadyExistsUser = this.usersRepository.findById(user_id);
-
-    if(!alreadyExistsUser) throw new appError("User not exist", 404);
+    if(!alreadyExistsUser) throw new Error("User not exist");
 
     const adminUser = this.usersRepository.turnAdmin(alreadyExistsUser);
 

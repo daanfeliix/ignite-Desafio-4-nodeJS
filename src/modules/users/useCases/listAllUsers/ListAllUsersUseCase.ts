@@ -1,4 +1,3 @@
-import appError from "../../../../errors/appError";
 import { User } from "../../model/User";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -11,9 +10,8 @@ class ListAllUsersUseCase {
 
   execute({ user_id }: IRequest): User[] {
     const requestUser = this.usersRepository.findById(user_id);
-
-    if(!requestUser) throw new appError("User not exist", 400);
-    if(!requestUser.admin) throw new appError("User no have permissions",);
+    if(!requestUser) throw new Error("User not exist");
+    if(!requestUser.admin) throw new Error("User no have permissions");
 
     const allUsers = this.usersRepository.list();
 
